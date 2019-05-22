@@ -6,7 +6,7 @@ pipeline {
         dockerImage = ''
     }
     
-agent {docker-prod}
+agent {docker}
     stages {
         stage('Clone repository') {
             steps {
