@@ -5,7 +5,8 @@ pipeline {
         gitUrl = "https://github.com/CPIJ/kumuluz-test-api.git"
         dockerImage = ''
     }
-
+    
+    agent any
     stages {
         stage('Clone repository') {
             steps {
