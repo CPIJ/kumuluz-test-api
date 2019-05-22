@@ -6,7 +6,7 @@ pipeline {
         dockerImage = ''
     }
     
-agent any
+    agent any
     stages {
         stage('Clone repository') {
             steps {
@@ -17,7 +17,7 @@ agent any
         stage('Build image') {
             steps {
                 script {
-                    sh "docker build -t $registry"
+                    dockerImage = docker.build registry
                 }
             }
         }
@@ -25,7 +25,9 @@ agent any
         stage('Push image to DockerHub') {
             steps {
                 script {
-                    sh "docker push $registry"
+                    docker.withRegisry('', credentials) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
